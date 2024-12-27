@@ -13,13 +13,13 @@ define postfix::master ($type,
   $service = $name
 
   # Augeas older than 0.10.0 has a typo in the postfix master lense
-  $unpriv_lens = versioncmp($::augeasversion, '0.10.0') ? {
+  $unpriv_lens = versioncmp($facts['augeas']['version'], '0.10.0') ? {
     -1 => 'unpriviliged',
     0  => 'unprivileged',
     1  => 'unprivileged',
   }
 
-  if(versioncmp($::facterversion, '1.6') == -1 ) {
+  if(versioncmp($facts['facterversion'], '1.6') == -1 ) {
     fail('facter version < 1.6 not supported')
   }
 

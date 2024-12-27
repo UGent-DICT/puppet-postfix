@@ -2,7 +2,7 @@
 #
 class postfix::preinstall
 {
-  case $::operatingsystem {
+  case $facts['os']['name'] {
       /Solaris/:  { include ::postfix::preinstall::solaris}
       default:    { include ::postfix::preinstall::default}
   }

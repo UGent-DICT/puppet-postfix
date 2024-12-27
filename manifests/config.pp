@@ -3,7 +3,7 @@
 class postfix::config
 {
 
-  $group_name = $::operatingsystem ? {
+  $group_name = $facts['os']['name'] ? {
     'Solaris' => 'sys',
     default   => 'root'
   }
@@ -31,8 +31,8 @@ class postfix::config
       recipient => $postfix::postmaster;
   }
 
-  case $::operatingsystem {
-    /(?i:Debian|Ubuntu)/: { include ::postfix::config::debian }
-    default:               { }
+  case $facts['os']['family'] {
+    'Debian': { include ::postfix::config::debian }
+    default: { }
   }
 }
