@@ -19,7 +19,7 @@
 #
 class postfix (
   $root_alias,
-  $mailname                 = $::fqdn,
+  $mailname                 = $facts['networking']['fqdn'],
   $postmaster               = 'root',
   $postfix_package          = $postfix::params::postfix_package,
   $postfix_ldap_package     = $postfix::params::postfix_ldap_package,
